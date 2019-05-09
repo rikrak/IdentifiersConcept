@@ -103,6 +103,15 @@ namespace IdentifiersConcept.Concept02
 
         #endregion
 
+        #region Conversion
+
+        public static explicit operator TId(Identifier<TId> value)
+        {
+            return value._id;
+        }
+
+        #endregion
+
         public override string ToString()
         {
             return IsDefined ? _id.ToString() : "undefined";

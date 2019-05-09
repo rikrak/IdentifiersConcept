@@ -1,11 +1,80 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using IdentifiersConcept.Concept02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IdentifierTests.Concept02
 {
     [TestClass]
-    public class IdentifierTests
+    public class GeneralTests
+    {
+        [TestMethod]
+        public void ShouldCast()
+        {
+            // arrange
+            const int expected = 123;
+            var target = new PersonId(expected);
+            
+            // act
+            var actual = (int) target;
+
+            // assert
+            actual.Should().Be(expected);
+        }
+
+        [TestMethod]
+        public void IsDefined_1()
+        {
+            // arrange
+            var target = PersonId.Undefined;
+            
+            // act
+            var actual = target.IsDefined;
+
+            // assert
+            actual.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void IsDefined_2()
+        {
+            // arrange
+            var target = new PersonId(0);
+            
+            // act
+            var actual = target.IsDefined;
+
+            // assert
+            actual.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void IsDefined_3()
+        {
+            // arrange
+            var target = new PersonId(10);
+            
+            // act
+            var actual = target.IsDefined;
+
+            // assert
+            actual.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void UndefinedShouldBeSingleton()
+        {
+            // arrange
+            
+            // act
+
+            // assert
+            PersonId.Undefined.Should().BeSameAs(PersonId.Undefined);
+        }
+    }
+
+    [TestClass]
+    public class IdentifierEqualityTests
     {
         [TestMethod]
         public void SameInstance()
