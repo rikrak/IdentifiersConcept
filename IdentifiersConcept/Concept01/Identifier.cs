@@ -2,10 +2,6 @@
 
 namespace IdentifiersConcept.Concept01
 {
-    public interface IIdentifier : IEquatable<IIdentifier>, IComparable<IIdentifier>
-    {
-
-    }
     public abstract class Identifier : IIdentifier, IEquatable<Identifier>
     {
         private const int UndefinedId = Int32.MinValue;
